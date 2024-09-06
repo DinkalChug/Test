@@ -1,0 +1,158 @@
+{
+	"name": "pl_cd",
+	"properties": {
+		"activities": [
+			{
+				"name": "cd_test",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "sepalLength",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sepalLength",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "sepalWidth",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sepalWidth",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "petalLength",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "petalLength",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "petalWidth",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "petalWidth",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "species",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "species",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference",
+						"parameters": {
+							"par_rootFolder": "testinggit",
+							"par_fileName": "iris.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "wt_cd",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "cd_test",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 2
+				}
+			}
+		],
+		"parameters": {
+			"par_test": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"var_test": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
