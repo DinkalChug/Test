@@ -112,11 +112,7 @@
 				"inputs": [
 					{
 						"referenceName": "DelimitedText1",
-						"type": "DatasetReference",
-						"parameters": {
-							"par_rootFolder": "testinggit",
-							"par_fileName": "iris.csv"
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [

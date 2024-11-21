@@ -1,0 +1,44 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage02",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "iris.csv",
+				"container": "sourcecontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "sepalLength",
+				"type": "String"
+			},
+			{
+				"name": "sepalWidth",
+				"type": "String"
+			},
+			{
+				"name": "petalLength",
+				"type": "String"
+			},
+			{
+				"name": "petalWidth",
+				"type": "String"
+			},
+			{
+				"name": "species",
+				"type": "String"
+			}
+		]
+	}
+}
