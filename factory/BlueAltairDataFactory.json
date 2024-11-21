@@ -1,0 +1,9 @@
+{
+	"name": "BlueAltairDataFactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a029345a-5a16-4195-8aa2-f3604d3167cf",
+		"tenantId": "153dcb9d-7906-432c-8b87-10671d48ff0d"
+	}
+}
