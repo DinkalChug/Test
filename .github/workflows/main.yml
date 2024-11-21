@@ -32,7 +32,7 @@ jobs:
           
   #Validates all of the Data Factory resources in the repository.
       - name: Validate is working hence commenting
-        run: npm run build validate ${{github.workspace}} /subscriptions/5b2976bf-0db0-47f7-9748-f7aafc6dcae2/resourceGroups/Test/providers/Microsoft.DataFactory/factories/GitTest01 # (2) The validate command needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance 
+        run: npm run build validate ${{github.workspace}} /subscriptions/38d37a2e-7dcb-432a-8735-746e19189d13/resourceGroups/rg-ADF-WOW/providers/Microsoft.DataFactory/factories/BlueAltairDataFactory # (2) The validate command needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance 
         working-directory: ${{github.workspace}}
    
 
@@ -46,7 +46,7 @@ jobs:
 
 # This step validates the ARM template and generates and exports the latest Data Facotry artifacts and uses the name "ExportedARMTemplate"
       - name: Validate and Generate ARM template
-        run: npm run build export ${{ github.workspace }} /subscriptions/5b2976bf-0db0-47f7-9748-f7aafc6dcae2/resourceGroups/Test/providers/Microsoft.DataFactory/factories/GitTest01 "ExportedArmTemplate"  # (3) The build command, as validate, needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance. The 3rd parameter is the exported ARM template artifact name 
+        run: npm run build export ${{ github.workspace }} /subscriptions/38d37a2e-7dcb-432a-8735-746e19189d13/resourceGroups/rg-ADF-WOW/providers/Microsoft.DataFactory/factories/BlueAltairDataFactory "ExportedArmTemplate"  # (3) The build command, as validate, needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance. The 3rd parameter is the exported ARM template artifact name 
    
 # This step takes the created ARM template files in the previous steps and uploads it in the working directory mentioned below:
       - name: upload artifact
@@ -102,11 +102,11 @@ jobs:
           uses: Azure/data-factory-deploy-action@v1.2.0
           
           with:
-            resourceGroupName: Deploy # (6) your target ADF resource group name
-            dataFactoryName: DinkalTest # (7) your target ADF name
+            resourceGroupName: rg-ADF-WOW # (6) your target ADF resource group name
+            dataFactoryName: BlueAltairDataFactoryQA # (7) your target ADF name
             armTemplateFile: ${{github.workspace}}/build/ExportedArmTemplate/ARMTemplateForFactory.json # (8) ARM template file name ARMTemplateForFactory.json
             armTemplateParametersFile: ${{github.workspace}}/build/ExportedArmTemplate/ARMTemplateParametersForFactory.json # (9) ARM template parameters file name ARMTemplateParametersForFactory.json
-            additionalParameters: 'AzureBlobStorage1_connectionString=DefaultEndpointsProtocol=https;AccountName=satestgit;AccountKey=PlaceYourAccountKeyHereWithoutQuotes;EndpointSuffix=core.windows.net'
+            additionalParameters: 'AzureBlobStorage02_connectionString=DefaultEndpointsProtocol=https;AccountName=sagittest1;AccountKey=ReplaceThisWithAccountKeyForsagittest1;EndpointSuffix=core.windows.net'
             #The above field accepts the values which are parameterized via the arm-template-parameters-definition.json file.
             #The secrets (if any) should be stored in the Github and then accessed via the secrets variable  
             #additionalParameters: # (10) Parameters which will be replaced in the ARM template. Expected format 'key1=value key2=value keyN=value'. At the minimum here you should provide the target ADF name parameter. Check the ARMTemplateParametersForFactory.json file for all the parameters that are expected in your scenario
