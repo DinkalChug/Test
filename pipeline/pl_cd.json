@@ -147,6 +147,9 @@
 		"variables": {
 			"var_test": {
 				"type": "String"
+			},
+			"var_test2": {
+				"type": "String"
 			}
 		},
 		"annotations": []
