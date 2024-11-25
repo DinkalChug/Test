@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText2",
+	"name": "ds_sink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage02",
