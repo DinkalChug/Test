@@ -147,6 +147,10 @@
 		"variables": {
 			"var_test": {
 				"type": "String"
+			},
+			"var_path": {
+				"type": "String",
+				"defaultValue": "abcd"
 			}
 		},
 		"annotations": []
